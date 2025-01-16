@@ -4,14 +4,14 @@ BEGIN
    IF NOT EXISTS (
       SELECT
       FROM   pg_catalog.pg_database
-      WHERE  datname = 'mydget') THEN
+      WHERE  datname = 'alarm_tool') THEN
 
-      CREATE DATABASE mydget;
+      CREATE DATABASE alarm_tool;
    END IF;
 END
 $do$;
 
-\c mydget;
+\c alarm_tool;
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
