@@ -5,13 +5,15 @@ import (
 )
 
 type Handlers struct {
-	UserHandler *handlers.UserHandler
-	AuthHandler *handlers.AuthHandler
+	UserHandler  *handlers.UserHandler
+	AuthHandler  *handlers.AuthHandler
+	AlarmHandler *handlers.AlarmHandler
 }
 
 func SetupHandlers(services *Services) *Handlers {
 	return &Handlers{
-		UserHandler: handlers.NewUserHandler(services.UserService),
-		AuthHandler: handlers.NewAuthHandler(services.AuthService),
+		UserHandler:  handlers.NewUserHandler(services.UserService),
+		AuthHandler:  handlers.NewAuthHandler(services.AuthService),
+		AlarmHandler: handlers.NewAlarmHandler(services.AlarmService),
 	}
 }

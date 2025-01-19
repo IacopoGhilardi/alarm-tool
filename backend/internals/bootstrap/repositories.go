@@ -6,11 +6,13 @@ import (
 )
 
 type Repositories struct {
-	UserRepository *repositories.UserRepository
+	UserRepository  *repositories.UserRepository
+	AlarmRepository *repositories.AlarmRepository
 }
 
 func SetupRepositories() *Repositories {
 	return &Repositories{
-		UserRepository: repositories.NewUserRepository(db.GetDB()),
+		UserRepository:  repositories.NewUserRepository(db.GetDB()),
+		AlarmRepository: repositories.NewAlarmRepository(db.GetDB()),
 	}
 }

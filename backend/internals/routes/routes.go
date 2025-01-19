@@ -18,4 +18,5 @@ func SetupRoutes(r *gin.Engine, handlers *bootstrap.Handlers) {
 
 	v1.SetupUserRoutes(v1Group.Group("/users"), handlers.UserHandler)
 	RegisterAuthRoutes(v1Group.Group("/auth"), handlers.AuthHandler)
+	v1.SetupAlarmRoutes(v1Group.Group("/users/{userId}/alarms"), handlers.AlarmHandler)
 }

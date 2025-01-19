@@ -94,7 +94,10 @@ func SetupGenericSuite(ctx context.Context) (*postgres.PostgresContainer, *gorm.
 		return nil, nil, err
 	}
 
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(
+		&models.User{},
+		&models.Alarm{},
+	)
 
 	return pgContainer, db, nil
 }

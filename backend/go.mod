@@ -14,6 +14,7 @@ require (
 	golang.org/x/crypto v0.32.0
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12
+	github.com/golang-migrate/migrate/v4 v4.17.0
 )
 
 require (
