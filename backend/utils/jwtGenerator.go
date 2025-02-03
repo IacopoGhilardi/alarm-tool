@@ -9,7 +9,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var jwtKey = []byte("mydget_secret_key")
+var jwtKey = []byte("smartrise_secret_key")
 
 type Claims struct {
 	UUID string `json:"uuid"`

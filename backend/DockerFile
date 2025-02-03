@@ -14,13 +14,13 @@ COPY . .
 RUN go mod download
 
 # Compila l'applicazione
-RUN CGO_ENABLED=0 GOOS=linux go build -o mydget-backend ./cmd/mydget-backend
+RUN CGO_ENABLED=0 GOOS=linux go build -o smartrise-backend ./cmd/smartrise-backend
 
 # Final stage
 FROM alpine:latest
 
 # Copia il binario compilato dal builder stage
-COPY --from=builder /app/mydget-backend .
+COPY --from=builder /app/smartrise-backend .
 # Copia il file .env
 COPY --from=builder /app/.env .
 
@@ -28,4 +28,4 @@ COPY --from=builder /app/.env .
 EXPOSE 8080
 
 # Comando per eseguire l'applicazione
-CMD ["./mydget-backend"]
+CMD ["./smartrise-backend"]
