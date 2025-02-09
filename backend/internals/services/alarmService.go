@@ -15,11 +15,11 @@ func NewAlarmService(repository *repositories.AlarmRepository) *AlarmService {
 	return &AlarmService{repository: repository}
 }
 
-func (s *AlarmService) FindAll(userId string) ([]models.Alarm, error) {
+func (s *AlarmService) FindAll(userId uint) ([]models.Alarm, error) {
 	return s.repository.FindAll(userId)
 }
 
-func (s *AlarmService) FindById(id string) (models.Alarm, error) {
+func (s *AlarmService) FindById(id uint) (models.Alarm, error) {
 	alarm, err := s.repository.FindById(id)
 	if err != nil {
 		return models.Alarm{}, err
@@ -48,6 +48,6 @@ func (s *AlarmService) Update(dto dto.UpdateAlarmDto) (models.Alarm, error) {
 	return *updatedAlarm, nil
 }
 
-func (s *AlarmService) Delete(id string) error {
+func (s *AlarmService) Delete(id uint) error {
 	return s.repository.Delete(id)
 }

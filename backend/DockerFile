@@ -14,13 +14,13 @@ COPY . .
 RUN go mod download
 
 # Compila l'applicazione
-RUN CGO_ENABLED=0 GOOS=linux go build -o smartrise-backend ./cmd/smartrise-backend
+RUN CGO_ENABLED=0 GOOS=linux go build -o dawndash-backend ./cmd/dawndash-backend
 
 # Final stage
 FROM alpine:latest
 
 # Copia il binario compilato dal builder stage
-COPY --from=builder /app/smartrise-backend .
+COPY --from=builder /app/dawndash-backend .
 # Copia il file .env
 COPY --from=builder /app/.env .
 
@@ -28,4 +28,4 @@ COPY --from=builder /app/.env .
 EXPOSE 8080
 
 # Comando per eseguire l'applicazione
-CMD ["./smartrise-backend"]
+CMD ["./dawndash-backend"]

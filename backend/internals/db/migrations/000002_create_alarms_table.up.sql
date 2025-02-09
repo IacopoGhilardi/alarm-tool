@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS alarms;
+DROP TYPE IF EXISTS repeat_type;

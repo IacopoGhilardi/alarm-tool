@@ -3,11 +3,11 @@ package models
 import "time"
 
 type Alarm struct {
-	ID        string    `gorm:"primaryKey;column:id" json:"id"`
+	ID        uint      `gorm:"primaryKey;column:id" json:"id"`
 	CreatedAt time.Time `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at" json:"updated_at"`
 	DeletedAt time.Time `gorm:"column:deleted_at" json:"deleted_at"`
-	UserID    string    `gorm:"column:user_id" json:"user_id"`
+	UserID    uint      `gorm:"column:user_id" json:"user_id"`
 	User      User      `gorm:"foreignKey:UserID" json:"user"`
 
 	// Campi base sveglia
@@ -16,11 +16,11 @@ type Alarm struct {
 	IsActive bool   `gorm:"column:is_active" json:"is_active"` // Sveglia attiva/disattiva
 
 	// Gestione ripetizioni
-	IsRepeat        bool      `gorm:"column:is_repeat" json:"is_repeat"`             // Sveglia ricorrente
-	RepeatDays      []string  `gorm:"column:repeat_days" json:"repeat_days"`         // Giorni di ripetizione
-	RepeatType      string    `gorm:"column:repeat_type" json:"repeat_type"`         // Tipo ripetizione (daily, weekly, custom)
-	RepeatEndTime   time.Time `gorm:"column:repeat_end_time" json:"repeat_end_time"` // Data fine ripetizione
-	RepeatStartTime time.Time `gorm:"column:repeat_start_time" json:"repeat_start_time"`
+	IsRepeat        bool       `gorm:"column:is_repeat" json:"is_repeat"`             // Sveglia ricorrente
+	RepeatDays      []string   `gorm:"column:repeat_days" json:"repeat_days"`         // Giorni di ripetizione
+	RepeatType      RepeatType `gorm:"column:repeat_type" json:"repeat_type"`         // Tipo ripetizione (daily, weekly, custom)
+	RepeatEndTime   time.Time  `gorm:"column:repeat_end_time" json:"repeat_end_time"` // Data fine ripetizione
+	RepeatStartTime time.Time  `gorm:"column:repeat_start_time" json:"repeat_start_time"`
 
 	// Personalizzazione
 	Sound          string `gorm:"column:sound" json:"sound"`                     // Suoneria
@@ -34,4 +34,18 @@ type Alarm struct {
 	WakeupWindow int  `gorm:"column:wakeup_window" json:"wakeup_window"` // Finestra di tempo per sveglia smart (minuti)
 	WeatherAware bool `gorm:"column:weather_aware" json:"weather_aware"` // Considera condizioni meteo
 	TrafficAware bool `gorm:"column:traffic_aware" json:"traffic_aware"` // Considera condizioni traffico
+}
+
+type RepeatType string
+
+const (
+	RepeatTypeDaily  RepeatType = "daily"
+	RepeatTypeWeekly RepeatType = "weekly"
+	RepeatTypeCustom RepeatType = "custom"
+)
+
+func (a *Alarm) IsValidRepeatType() bool {
+	return a.RepeatType == RepeatTypeDaily ||
+		a.RepeatType == RepeatTypeWeekly ||
+		a.RepeatType == RepeatTypeCustom
 }

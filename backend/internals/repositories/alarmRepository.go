@@ -15,7 +15,7 @@ func NewAlarmRepository(db *gorm.DB) *AlarmRepository {
 	return &AlarmRepository{db: db}
 }
 
-func (r *AlarmRepository) FindAll(userId string) ([]models.Alarm, error) {
+func (r *AlarmRepository) FindAll(userId uint) ([]models.Alarm, error) {
 	var alarms []models.Alarm
 	if err := r.db.Where("user_id = ?", userId).Find(&alarms).Error; err != nil {
 		return nil, err
@@ -23,7 +23,7 @@ func (r *AlarmRepository) FindAll(userId string) ([]models.Alarm, error) {
 	return alarms, nil
 }
 
-func (r *AlarmRepository) FindById(id string) (*models.Alarm, error) {
+func (r *AlarmRepository) FindById(id uint) (*models.Alarm, error) {
 	var alarm models.Alarm
 	if err := r.db.Where("id = ?", id).First(&alarm).Error; err != nil {
 		return nil, err
@@ -47,6 +47,6 @@ func (r *AlarmRepository) Update(oldAlarm *models.Alarm, alarm *models.Alarm) (*
 	return oldAlarm, nil
 }
 
-func (r *AlarmRepository) Delete(id string) error {
+func (r *AlarmRepository) Delete(id uint) error {
 	return r.db.Delete(&models.Alarm{}, id).Error
 }

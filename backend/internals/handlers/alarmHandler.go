@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/iacopoghilardi/alarm-tool/internals/services"
@@ -18,7 +19,8 @@ func NewAlarmHandler(alarmService *services.AlarmService) *AlarmHandler {
 }
 
 func (h *AlarmHandler) FindAll(c *gin.Context) {
-	alarms, err := h.service.FindAll(c.Param("userId"))
+	userId, err := strconv.ParseUint(c.Param("userId"), 10, 64)
+	alarms, err := h.service.FindAll(uint(userId))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, utils.BuildErrorResponse(
 			"Internal Server Error",
@@ -30,7 +32,8 @@ func (h *AlarmHandler) FindAll(c *gin.Context) {
 }
 
 func (h *AlarmHandler) FindById(c *gin.Context) {
-	alarm, err := h.service.FindById(c.Param("id"))
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	alarm, err := h.service.FindById(uint(id))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, utils.BuildErrorResponse(
 			"Internal Server Error",
@@ -74,7 +77,8 @@ func (h *AlarmHandler) Update(c *gin.Context) {
 }
 
 func (h *AlarmHandler) Delete(c *gin.Context) {
-	err := h.service.Delete(c.Param("id"))
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	err = h.service.Delete(uint(id))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, utils.BuildErrorResponse(
 			"Internal Server Error",

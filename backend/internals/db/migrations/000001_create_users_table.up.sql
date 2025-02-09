@@ -1,0 +1,5 @@
+DROP SCHEMA IF EXISTS alarm_tool CASCADE;
+
+DROP INDEX IF EXISTS idx_users_email;
+DROP INDEX IF EXISTS idx_users_uuid;
+DROP TABLE IF EXISTS users;

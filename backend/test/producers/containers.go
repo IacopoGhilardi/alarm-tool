@@ -67,9 +67,9 @@ func CreatePostgresContainer(config PostgresConfig, ctx context.Context) (*postg
 func SetupGenericSuite(ctx context.Context) (*postgres.PostgresContainer, *gorm.DB, error) {
 
 	postgresConfig := PostgresConfig{
-		DBName:     "smartrise",
-		DBUser:     "smartrise",
-		DBPassword: "smartrise",
+		DBName:     "dawndash",
+		DBUser:     "dawndash",
+		DBPassword: "dawndash",
 		DBHost:     "localhost",
 		DBPort:     "5432",
 	}
@@ -96,6 +96,7 @@ func SetupGenericSuite(ctx context.Context) (*postgres.PostgresContainer, *gorm.
 
 	db.AutoMigrate(
 		&models.User{},
+		&models.TravelPath{},
 		&models.Alarm{},
 	)
 

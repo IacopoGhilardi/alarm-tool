@@ -3,6 +3,7 @@ package test
 import (
 	"context"
 	"log"
+	"testing"
 	"time"
 
 	"github.com/iacopoghilardi/alarm-tool/internals/repositories"
@@ -125,4 +126,8 @@ func (s *AlarmTestSuite) TestDeleteAlarm() {
 	deletedAlarm, err := s.service.FindById(alarm.ID)
 	assert.Nil(s.T(), deletedAlarm)
 	assert.Error(s.T(), err)
+}
+
+func TestAlarmTestSuite(t *testing.T) {
+	suite.Run(t, new(AlarmTestSuite))
 }

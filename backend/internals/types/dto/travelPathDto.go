@@ -1,7 +1,7 @@
 package dto
 
 type CreateTravelPathDto struct {
-	UserID        string      `json:"user_id"`
+	UserID        uint        `json:"user_id"`
 	StartLocation LocationDto `json:"start_location"`
 	EndLocation   LocationDto `json:"end_location"`
 }

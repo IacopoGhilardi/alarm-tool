@@ -3,10 +3,10 @@ package dto
 import "time"
 
 type AlarmDto struct {
-	ID              string    `json:"id"`
+	ID              uint      `json:"id"`
 	CreatedAt       string    `json:"createdAt"`
 	UpdatedAt       string    `json:"updatedAt"`
-	UserID          string    `json:"user_id"`
+	UserID          uint      `json:"user_id"`
 	Label           string    `json:"label"`
 	Time            string    `json:"time"`
 	IsActive        bool      `json:"isActive"`
@@ -26,7 +26,7 @@ type AlarmDto struct {
 }
 
 type CreateAlarmDto struct {
-	UserID          string    `json:"user_id"`
+	UserID          uint      `json:"user_id"`
 	Label           string    `json:"label"`
 	Time            string    `json:"time"`
 	IsActive        bool      `json:"isActive"`
@@ -43,9 +43,9 @@ type CreateAlarmDto struct {
 }
 
 type UpdateAlarmDto struct {
-	ID              string    `json:"id"`
+	ID              uint      `json:"id"`
 	UpdatedAt       string    `json:"updatedAt"`
-	UserID          string    `json:"user_id"`
+	UserID          uint      `json:"user_id"`
 	Label           string    `json:"label"`
 	Time            string    `json:"time"`
 	IsActive        bool      `json:"isActive"`
