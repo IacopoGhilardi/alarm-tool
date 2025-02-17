@@ -11,7 +11,8 @@ class AlarmItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(alarm.title),
-      subtitle: Text(alarm.time.toString()),
+      subtitle: Text(
+          '${alarm.time.hour}:${alarm.time.minute.toString().padLeft(2, '0')}'),
       trailing: Switch(
         value: alarm.isActive,
         onChanged: (value) {
