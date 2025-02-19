@@ -1,0 +1,35 @@
+services:
+  network:
+    container_name: dawndash-network
+
+  dawndash-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - POSTGRES_USER=dawndash
+      - POSTGRES_PASSWORD=dawndash
+      - POSTGRES_DB=dawndash
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    depends_on:
+      - postgres
+    networks:
+      - dawndash-network
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=dawndash
+      - POSTGRES_PASSWORD=dawndash
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dawndash-network
+
+volumes:
+  postgres_data:

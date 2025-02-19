@@ -41,12 +41,16 @@ class _AlarmScreenState extends State<AlarmScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AlarmDialog(
-              onAlarmAdded: (Alarm newAlarm) {
-                setState(() {
-                  _alarms.add(newAlarm);
-                });
-              },
+            isScrollControlled: true,
+            builder: (context) => Container(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: AlarmDialog(
+                onAlarmAdded: (Alarm newAlarm) {
+                  setState(() {
+                    _alarms.add(newAlarm);
+                  });
+                },
+              ),
             ),
           );
         },

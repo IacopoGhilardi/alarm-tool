@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'condition_card.dart';
+import '../../utils/conditions_utils.dart';
 
 class ConditionsSection extends StatelessWidget {
   const ConditionsSection({super.key});
@@ -18,22 +19,22 @@ class ConditionsSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Row(
-          children: const [
+          children: [
             Expanded(
               child: ConditionCard(
                 icon: Icons.traffic,
                 title: 'Traffico',
-                value: 'Moderato',
-                color: Colors.orange,
+                value: getTrafficText(TrafficLevel.high),
+                color: getTrafficColor(TrafficLevel.high),
               ),
             ),
             SizedBox(width: 16),
             Expanded(
               child: ConditionCard(
-                icon: Icons.cloud,
+                icon: Icons.cloudy_snowing,
                 title: 'Meteo',
-                value: 'Sereno',
-                color: Colors.blue,
+                value: getWeatherText(WeatherCondition.rainy),
+                color: getWeatherColor(WeatherCondition.rainy),
               ),
             ),
           ],
